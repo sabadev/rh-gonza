@@ -1,0 +1,7 @@
+{
+  "name": "rh-gonza",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
