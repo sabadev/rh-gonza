@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reporte General</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="getReport()">
+    <ion-item>
+      <ion-label>Inicio</ion-label>
+      <ion-datetime [(ngModel)]="startDate" name="startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fin</ion-label>
+      <ion-datetime [(ngModel)]="endDate" name="endDate"></ion-datetime>
+    </ion-item>
+    <ion-button expand="block" type="submit">Generar Reporte</ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let entry of report">
+      <ion-label>
+        <h3>{{ entry.employee_name }} {{ entry.employee_last_name }}</h3>
+        <p>Fecha: {{ entry.log_date }}</p>
+        <p>Entrada: {{ entry.entry_time }}</p>
+        <p>Salida: {{ entry.exit_time }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

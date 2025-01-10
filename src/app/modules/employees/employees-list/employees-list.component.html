@@ -1,0 +1,28 @@
+<app-header title="Lista de Empleados"></app-header>
+
+<ion-list>
+  <ion-item *ngFor="let employee of employees">
+    <ion-label>
+      <h2>{{ employee.name }} ({{ employee.username || 'Sin usuario' }})</h2>
+      <p>{{ employee.position }}</p>
+      <p>
+        <ion-badge [color]="employee.expediente_status === 'Completo' ? 'success' : 'warning'">
+          {{ employee.expediente_status }}
+        </ion-badge>
+      </p>
+    </ion-label>
+    <ion-button slot="end" color="primary" [routerLink]="['/employees/detail', employee.id]">
+      Editar
+    </ion-button>
+    <ion-button slot="end" color="danger" (click)="confirmDelete(employee)">
+      Eliminar
+    </ion-button>
+    <ion-button slot="end" color="tertiary" [routerLink]="['/employees/files', employee.id]">
+      Expediente
+    </ion-button>
+  </ion-item>
+</ion-list>
+
+<ion-button expand="block" color="primary" routerLink="/employees/detail">
+  Crear Nuevo Empleado
+</ion-button>

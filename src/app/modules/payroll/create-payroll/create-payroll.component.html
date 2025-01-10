@@ -1,0 +1,29 @@
+<app-header title="Crear Nómina"></app-header>
+
+<ion-content>
+  <ion-list>
+    <form (ngSubmit)="createPayroll()">
+      <ion-item>
+        <ion-label>Periodo</ion-label>
+        <ion-input [(ngModel)]="payroll.period" name="period" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha Inicio</ion-label>
+        <ion-datetime
+          [(ngModel)]="payroll.start_date"
+          name="startDate"
+          required
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha Fin</ion-label>
+        <ion-datetime
+          [(ngModel)]="payroll.end_date"
+          name="endDate"
+          required
+        ></ion-datetime>
+      </ion-item>
+      <ion-button expand="full" type="submit">Crear Nómina</ion-button>
+    </form>
+  </ion-list>
+</ion-content>

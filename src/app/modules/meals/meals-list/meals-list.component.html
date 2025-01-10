@@ -1,0 +1,39 @@
+<app-header title="Lista de comidas"></app-header>
+
+<ion-content>
+  <!-- Selector de Fecha -->
+  <ion-item>
+    <ion-label>Selecciona un día</ion-label>
+    <ion-datetime
+      [(ngModel)]="selectedDate"
+      (ionChange)="onDateChange($event)"
+      presentation="date"
+    ></ion-datetime>
+  </ion-item>
+
+  <!-- Lista de Menús -->
+  <div *ngIf="meals.length === 0">No hay menús disponibles para este día.</div>
+
+  <ion-list>
+    <ion-radio-group [(ngModel)]="selectedMealId">
+      <ion-item *ngFor="let meal of meals">
+        <ion-label>
+          <h2>{{ meal.name }}</h2>
+          <p>{{ meal.description }}</p>
+        </ion-label>
+        <ion-radio slot="start" [value]="meal.id"></ion-radio>
+        <ion-button slot="end" color="danger" (click)="deleteMeal(meal.id)">
+          Eliminar
+        </ion-button>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-button expand="full" color="primary" (click)="confirmSelection()">Confirmar Selección</ion-button>
+
+  <ion-button expand="block" color="secondary" routerLink="/meals/add">
+    Agregar Menú
+  </ion-button>
+
+  <ion-button routerLink="report" expand="full">Reporte de Comidas</ion-button>
+</ion-content>

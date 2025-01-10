@@ -1,0 +1,41 @@
+<app-header [title]="'Gestión de Documentos de ' + employeeName"></app-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let doc of documents">
+      <ion-label>
+        <h2>{{ doc.type }}</h2>
+        <p>{{ doc.url ? 'Subido' : 'No subido' }}</p>
+      </ion-label>
+
+      <!-- Botón para reemplazar el documento -->
+      <ion-button *ngIf="doc.url" color="primary" (click)="fileInput.click()">
+        Reemplazar
+      </ion-button>
+
+      <!-- Botón para eliminar el documento -->
+      <ion-button *ngIf="doc.url" color="danger" (click)="deleteDocument(doc.type)">
+        Eliminar
+      </ion-button>
+
+      <!-- Botón para subir el documento -->
+      <ion-button *ngIf="!doc.url" color="success" (click)="fileInput.click()">
+        Subir
+      </ion-button>
+
+      <!-- Botón para ver el documento -->
+      <ion-button *ngIf="doc.url" color="tertiary" (click)="viewDocument(doc.url)">
+        Ver
+      </ion-button>
+
+      <!-- Input oculto para seleccionar archivos -->
+      <input
+        type="file"
+        #fileInput
+        accept=".pdf,.jpg,.png"
+        style="display: none;"
+        (change)="onFileSelected($event, doc.type)"
+      />
+    </ion-item>
+  </ion-list>
+</ion-content>

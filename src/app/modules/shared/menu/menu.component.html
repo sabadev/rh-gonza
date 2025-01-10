@@ -1,0 +1,42 @@
+<ion-menu contentId="main-content" side="start" menuId="main-menu">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/dashboard" routerDirection="root">
+        <ion-icon slot="start" name="home"></ion-icon>
+        <ion-label>Dashboard</ion-label>
+      </ion-item>
+      <ion-item routerLink="/meals" routerDirection="root">
+        <ion-icon slot="start" name="restaurant"></ion-icon>
+        <ion-label>Comedor</ion-label>
+      </ion-item>
+      <ion-item routerLink="/employees" routerDirection="root">
+        <ion-icon slot="start" name="people"></ion-icon>
+        <ion-label>Empleados</ion-label>
+      </ion-item>
+      <ion-item routerLink="/payrolls" routerDirection="root">
+        <ion-icon slot="start" name="wallet-outline"></ion-icon>
+        <ion-label>Nominas</ion-label>
+      </ion-item>
+      <ion-item routerLink="/reports" routerDirection="root">
+        <ion-icon slot="start" name="stats-chart"></ion-icon>
+        <ion-label>Reportes</ion-label>
+      </ion-item>
+      <ion-item routerLink="/attendance" routerDirection="root">
+        <ion-icon slot="start" name="calendar-outline"></ion-icon>
+        <ion-label>Asistencia</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-footer>
+      <ion-item (click)="logout()">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
+    </ion-footer>
+  </ion-content>
+</ion-menu>

@@ -1,0 +1,63 @@
+<app-header title="Asistencia"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registrar Entrada/Salida</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form>
+        <!-- Subida de foto -->
+        <div class="photo-upload">
+          <ion-label>Toma una foto</ion-label>
+          <input type="file" accept="image/*" capture="environment" (change)="capturePhoto($event)" />
+        </div>
+
+        <!-- Botones de registrar -->
+        <div class="button-group">
+          <ion-button
+            color="primary"
+            (click)="registerAttendanceWithPhoto('entry')"
+            [disabled]="loading || hasEntry || !photo"
+          >
+            Registrar Entrada
+          </ion-button>
+          <ion-button
+            color="secondary"
+            (click)="registerAttendanceWithPhoto('exit')"
+            [disabled]="loading || !hasEntry || hasExit || !photo"
+          >
+            Registrar Salida
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mensaje de retroalimentación -->
+  <ion-text *ngIf="message" color="success">
+    {{ message }}
+  </ion-text>
+
+  <!-- Logs recientes -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Logs Recientes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let log of recentLogs">
+          <ion-label>
+            {{ log.log_type | titlecase }} -
+            {{ log.log_time | date: 'short' }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón de cerrar sesión -->
+  <ion-button expand="block" color="danger" (click)="logout()">
+    Cerrar Sesión
+  </ion-button>
+</ion-content>

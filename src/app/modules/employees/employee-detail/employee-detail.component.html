@@ -1,0 +1,31 @@
+<app-header [title]="employee?.id ? 'Editar Empleado' : 'Crear Empleado'"></app-header>
+
+<ion-content>
+  <form (ngSubmit)="saveEmployee()">
+    <ion-item *ngFor="let field of fields">
+      <ion-input
+        [label]="field.label"
+        labelPlacement="floating"
+        [(ngModel)]="employee[field.name]"
+        [name]="field.name"
+        [type]="field.type || 'text'"
+        [required]="field.required"
+      ></ion-input>
+    </ion-item>
+
+    <ion-note color="primary" class="ion-padding">
+      El usuario y la contraseña se generan automáticamente al crear un empleado.
+    </ion-note>
+
+    <ion-button expand="block" type="submit">
+      {{ employee.id ? 'Actualizar' : 'Crear' }}
+    </ion-button>
+  </form>
+
+  <!-- Botón flotante para actualizar contraseña -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="updatePassword()">
+      <ion-icon name="key-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

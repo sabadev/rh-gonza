@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/meals"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Menú</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addMeal()">
+    <ion-item>
+      <ion-label position="floating">Nombre del Menú</ion-label>
+      <ion-input [(ngModel)]="meal.name" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="meal.description" name="description" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime
+        [(ngModel)]="meal.date"
+        name="date"
+        presentation="date"
+        required
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" color="primary">Agregar Menú</ion-button>
+  </form>
+</ion-content>

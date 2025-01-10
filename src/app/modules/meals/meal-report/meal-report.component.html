@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/meals"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reportes de Comidas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="reportType">
+    <ion-segment-button value="range">Por Rango</ion-segment-button>
+    <ion-segment-button value="daily">Por Día</ion-segment-button>
+  </ion-segment>
+
+  <!-- Reporte por rango -->
+  <div *ngIf="reportType === 'range'">
+    <ion-item>
+      <ion-label>Fecha de inicio</ion-label>
+      <ion-datetime [(ngModel)]="startDate" presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de fin</ion-label>
+      <ion-datetime [(ngModel)]="endDate" presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="full" (click)="generateRangeReport()">Generar Reporte</ion-button>
+
+    <div *ngIf="report.length > 0">
+      <h2>Reporte por Rango:</h2>
+      <ion-list>
+        <ion-item *ngFor="let item of report">
+          <ion-label>
+            <h3>{{ item.username }}</h3>
+            <p>Nombre: {{ item.first_name }} {{ item.last_name }} {{ item.second_last_name }}</p>
+            <p>Días que pidió comida: {{ item.meal_days }}</p>
+            <p>Total comidas solicitadas: {{ item.total_meals }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <!-- Reporte diario -->
+  <div *ngIf="reportType === 'daily'">
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime [(ngModel)]="date" presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="full" (click)="generateDailyReport()">Generar Reporte Diario</ion-button>
+
+    <div *ngIf="dailyDetails.length > 0">
+      <h2>Detalles del Día</h2>
+      <ion-list>
+        <ion-item *ngFor="let detail of dailyDetails">
+          <ion-label>
+            <p>Usuario: {{ detail.usuario }}</p>
+            <p>Empleado: {{ detail.empleado }}</p>
+            <p>Menú Seleccionado: {{ detail.menu }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="dailySummary.length > 0">
+      <h2>Resumen del Día</h2>
+      <ion-list>
+        <ion-item *ngFor="let summary of dailySummary">
+          <ion-label>
+            <p>Menú: {{ summary.menu }}</p>
+            <p>Solicitudes: {{ summary.cantidad }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
